@@ -9,18 +9,19 @@ for(let i = 0; i<3; i++){
     defaultVal = i + 1; // used as and numbering algorith
     let a = defaultVal;
     
-    let hori = document.createElement(div);    
+    let hori = document.createElement('div');    
     hori.className = 'hori';
     buttonGrid.appendChild(hori);
 
 
     for(let x = 1; x <= 3; x++){
-        let box = document.createElement(div);
+        let box = document.createElement('div');
         box.className = 'box';
-        let text = doxument.createElement(p);
+        let text = document.createElement('p');
         hori.appendChild(box);
         box.appendChild(text);
-        document.querySelector('.box > p').innerHTML(ix + a);
+        let p = document.querySelector('.box > p');
+        p.innerHTML = i*x + a;
 
     }
 }
