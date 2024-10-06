@@ -24,16 +24,17 @@
     height: var(--height);
 } */
 
-/* .calcDisplay {
+.calcDisplay {
     width: var(--width);
     height: 100px;
-} */
+}
 
 .hori {
     flex-direction: row;
 }
 
 .box {
-    height:70px;
-    width: 70px;
+    height:150px;
+    width: 150px;
+    /* border: 0.01px solid black; */
 }
