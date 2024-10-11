@@ -19,12 +19,14 @@ for(let i = 0; i<3; i++){
         
         let box = document.createElement('div');
         box.className = 'box';
+        box.style.zIndex = 2;
         let text = document.createElement('p');
         hori.appendChild(box);
         box.appendChild(text);
 
         text.innerHTML = a + k;
         box.id = a + k;
+        
       
         k+=1;
 
@@ -54,6 +56,10 @@ boxAll.forEach(
     console.log('Clicked');
 
     }
+
+    if(id == '='){
+       evaluate();
+    }
 }
 
 })
@@ -71,6 +77,7 @@ function createBox(something){
         
     let box = document.createElement('div');
     box.className = 'box';
+    box.style.zIndex = 2;
     let text = document.createElement('p');
     hori.appendChild(box);
     box.appendChild(text);
@@ -82,5 +89,19 @@ function createBox(something){
    
     
 
+
+}
+
+function evaluate(){
+
+disVal = document.querySelectorAll('.calcDisplay > p');
+let eqn = [];
+disVal.forEach((item)=>{
+ eqn += item.innerHTML;
+})
+
+
+
+console.log(eqn);
 
 }
