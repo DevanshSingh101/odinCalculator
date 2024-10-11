@@ -42,8 +42,9 @@ boxAll.forEach(
     else{
 
         operator = id;
-        
+
         if(operatorClicked == 0){
+            
             //Type in display
             display_p.innerHTML += id;
     
