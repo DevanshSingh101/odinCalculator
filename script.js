@@ -1,15 +1,13 @@
 const buttonGrid = document.querySelector("#grid");
 const hori_ = document.querySelector('.hori');
 const box_ = document.querySelector('.box');
-const boxAll = document.querySelectorAll('.box');
 const display = document.querySelector('.calcDisplay');
+const display_p = document.createElement('p');
 let a = 0;
 
 for(let i = 0; i<3; i++){
     // algo = box number = ix + a where a = default and each loop 1 default = i+1
-    //this gives the number at a box in order 1 2 3...
-    
-    
+    //this gives the number at a box in order 1 2 3...    
     
     let hori = document.createElement('div');    
     hori.className = 'hori';
@@ -24,11 +22,10 @@ for(let i = 0; i<3; i++){
         let text = document.createElement('p');
         hori.appendChild(box);
         box.appendChild(text);
-        // let p = document.querySelector('.box > p');
-        
+
         text.innerHTML = a + k;
         box.id = a + k;
-        console.log(a+k);
+      
         k+=1;
 
     }
@@ -40,14 +37,20 @@ for(let i = 0; i<3; i++){
 createBox(['0', '+', '-']);
 createBox(['X', '/', '=']);
 
+const boxAll = document.querySelectorAll('.box');
+console.log(boxAll);
+
 boxAll.forEach(
 (item)=>{
    
-    let id = box_.getAttribute(id);
+    
     item.onclick = ()=>{
 
-    if (id in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, '+', '-', 'X', '/']){
-    item.innerHTML += id;
+    let id = item.getAttribute('id');
+    if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', 'X', '/'].includes(id)){
+    
+    display.appendChild(display_p);    
+    display_p.innerHTML += id;
     console.log('Clicked');
 
     }
