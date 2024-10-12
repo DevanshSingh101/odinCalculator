@@ -6,9 +6,10 @@ const display_p = document.createElement('p');
 let operatorClicked = 0;
 let operator = '';
 let a = 0;
-let num1 ='';
+let num1 = '';
 let num2 = '';
 let op = '';
+let operator_list = ['+', '-', '/', 'X'];
 display.appendChild(display_p); 
 
 createNumbers();
@@ -21,46 +22,57 @@ boxAll.forEach(
 
    let id = item.getAttribute('id');
 
-   if (isNumber(id) == 1){
-     //case 1 operator is not clicked
-     if(operatorClicked == 0){
-        //Type in display
+   if(isNumber(id))
+
+    {
+    
         display_p.innerHTML += id;
+        if(operatorClicked)
+        {
+            if(operator_list.includes(display_p.innerHTML)){
+                display_p.innerHTML = '';
+            }
+            num2+=id;
+        }
+        else
+        {
+            num1 +=id
+        }
+   } else
+   {
 
+        display_p.innerHTML ='';
+        display_p.innerHTML +=id;
+
+        if(id == 'AC'){
+            display_p.innerHTML ='';
+            num1 = '';
+            num2 = '';
+            operator = '';
+        }
         
-     }
-     //case 2 operator is clicked
-     else{
 
-        num1 = display_p.innerHTML;
-        display_p.innerHTML = '';
-
-        
-     }
-   
-    }
-    else{
-
-        operator = id;
-
-        if(operatorClicked == 0){
-            
-            //Type in display
-            display_p.innerHTML += id;
-    
-            
-         }
-         //case 2 operator is clicked
-         else{
-    
-            num1 = display_p.innerHTML;
-            display_p.innerHTML = '';
-    
-            
-         }
+        if(operatorClicked)
+        {
+            if(id == '='){
+                display_p.innerHTML = evaluate(num1, num2, operator); 
+                num1= display_p.innerHTML;
+                num2 = '';
+            }
+            else{
+                operator = id;
+            }
+        }
+        else
+        {
+            operatorClicked = 1;
+            operator = id;
+        }
+   }
 
 
-    }
+   console.log([num1, num2, operator]);
+
 
 }})
 
@@ -126,5 +138,23 @@ function createNumbers(){
     
     createBox(['0', '+', '-']);
     createBox(['X', '/', '=']);
+    createBox(['', 'AC', ''])
     
     }
+
+
+
+function evaluate(n1, n2, op){
+    if(op == '+'){
+        return eval(n1)+eval(n2);
+    }
+    if(op == '-'){
+        return eval(n1)-eval(n2);
+    }
+    if(op == 'X'){
+        return eval(n1)*eval(n2);
+    }
+    if(op == '/'){
+        return eval(n1)/eval(n2);
+    }
+}
